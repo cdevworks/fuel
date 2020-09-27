@@ -123,10 +123,10 @@ export const getCirculatingSupply = async (grap) => {
   if (timePassed < 0) {
     return 0;
   }
-  let grapsDistributed = grap.toBigN(8 * timePassed * 250000 / 625000); //graps from first 8 pools
+  let grapsDistributed = grap.toBigN(8 * timePassed * 250000 / 172800); //graps from first 8 pools
   let starttimePool2 = grap.toBigN(await grap.contracts.ycrvUNIV_pool.methods.starttime().call()).toNumber();
   timePassed = now["timestamp"] - starttime;
-  let pool2Yams = grap.toBigN(timePassed * 1500000 / 625000); // graps from second pool. note: just accounts for first week
+  let pool2Yams = grap.toBigN(timePassed * 1500000 / 172800); // graps from second pool. note: just accounts for first week
   let circulating = pool2Yams.plus(grapsDistributed).times(scalingFactor).div(10**36).toFixed(2)
   return circulating
 }

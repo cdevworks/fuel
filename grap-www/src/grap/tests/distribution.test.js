@@ -283,7 +283,7 @@ describe("Distribution", () => {
 
         console.log(earned, rr, rpt);
 
-        await grap.testing.increaseTime(625000 + 1000);
+        await grap.testing.increaseTime(172800 + 1000);
 
         earned = await grap.contracts.ampl_pool.methods.earned(user).call();
 
@@ -336,7 +336,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.ampl_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.ampl_pool.methods.earned(user).call();
@@ -414,7 +414,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.eth_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.eth_pool.methods.earned(user).call();
@@ -987,7 +987,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.yfi_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.yfi_pool.methods.earned(user).call();
@@ -1053,7 +1053,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.comp_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.comp_pool.methods.earned(user).call();
@@ -1121,7 +1121,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.lend_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.lend_pool.methods.earned(user).call();
@@ -1190,7 +1190,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.link_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.link_pool.methods.earned(user).call();
@@ -1259,7 +1259,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.mkr_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.mkr_pool.methods.earned(user).call();
@@ -1336,7 +1336,7 @@ describe("Distribution", () => {
 
         let rpt = await grap.contracts.snx_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
-        await grap.testing.increaseTime(625000 + 100);
+        await grap.testing.increaseTime(172800 + 100);
         // await grap.testing.mineBlock();
 
         earned = await grap.contracts.snx_pool.methods.earned(user).call();

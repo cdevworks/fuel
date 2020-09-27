@@ -626,7 +626,7 @@ contract LPTokenWrapper {
 
 contract GRAPMKRPool is LPTokenWrapper, IRewardDistributionRecipient {
     IERC20 public grap = IERC20(0x06d8ee2B533889f4d40714B95424fB66323c0eAc);
-    uint256 public constant DURATION = 625000; // ~7 1/4 days
+    uint256 public constant DURATION = 172800; // ~7 1/4 days
 
     uint256 public starttime = 1597766400; // 2020-08-18 16:00:00 (UTC +00:00)
     uint256 public periodFinish = 0;
