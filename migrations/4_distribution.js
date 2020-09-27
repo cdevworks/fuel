@@ -54,8 +54,8 @@ async function deployDistribution(deployer, network, accounts) {
     await Promise.all([
         link_pool.methods.setRewardDistribution("0xA8C178C6d6A9f5cd52145f4b142Bc5bc36C8F74f").send({from: "0xA8C178C6d6A9f5cd52145f4b142Bc5bc36C8F74f", gas: 100000}),
       ]);
-
-    let twenty = web3.utils.toBN(10**3).mul(web3.utils.toBN(10**18)).mul(web3.utils.toBN(200));
+    // tokens will be sent from the deployer address, make sure to get the math right to avoid substraction errors!!!
+    let twenty = web3.utils.toBN(10**3).mul(web3.utils.toBN(10**18)).mul(web3.utils.toBN(2000));
     let one_five = web3.utils.toBN(10**3).mul(web3.utils.toBN(10**18)).mul(web3.utils.toBN(1500));
 
     console.log("transfering and notifying");
