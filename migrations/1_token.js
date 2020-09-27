@@ -21,8 +21,8 @@ module.exports = migration;
 async function deployToken(deployer, network) {
   await deployer.deploy(RUPEEImplementation);
   await deployer.deploy(RUPEEProxy,
-    "FUEL",
-    "GAS",
+    "RUPEE",
+    "RUPEE",
     18,
     "2000000000000000000000000",
     RUPEEImplementation.address,
