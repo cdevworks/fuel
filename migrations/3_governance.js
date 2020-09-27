@@ -3,13 +3,13 @@
 
 // Token
 // deployed first
-const GRAPImplementation = artifacts.require("GRAPDelegate");
-const GRAPProxy = artifacts.require("GRAPDelegator");
+const RUPEEImplementation = artifacts.require("RUPEEDelegate");
+const RUPEEProxy = artifacts.require("RUPEEDelegator");
 
 // Rs
 // deployed second
-const GRAPReserves = artifacts.require("GRAPReserves");
-const GRAPRebaser = artifacts.require("GRAPRebaser");
+const RUPEEReserves = artifacts.require("RUPEEReserves");
+const RUPEERebaser = artifacts.require("RUPEERebaser");
 
 // Governance
 // deployed third
@@ -39,6 +39,6 @@ async function deployGovernance(deployer, network) {
   await deployer.deploy(Timelock);
   await deployer.deploy(Gov,
       Timelock.address,
-      GRAPProxy.address
+      RUPEEProxy.address
   );
 }

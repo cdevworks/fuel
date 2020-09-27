@@ -5,22 +5,22 @@ var fs = require('fs')
 
 // Protocol
 // deployed second
-const GRAPImplementation = artifacts.require("GRAPDelegate");
-const GRAPProxy = artifacts.require("GRAPDelegator");
+const RUPEEImplementation = artifacts.require("RUPEEDelegate");
+const RUPEEProxy = artifacts.require("RUPEEDelegator");
 
 // deployed third
-const GRAPReserves = artifacts.require("GRAPReserves");
-const GRAPRebaser = artifacts.require("GRAPRebaser");
+const RUPEEReserves = artifacts.require("RUPEEReserves");
+const RUPEERebaser = artifacts.require("RUPEERebaser");
 
 const Gov = artifacts.require("GovernorAlpha");
 const Timelock = artifacts.require("Timelock");
 
 // deployed fourth
-const GRAP_LINKPool = artifacts.require("GRAPLINKPool");
+const RUPEE_LINKPool = artifacts.require("RUPEELINKPool");
 
 
 // deployed fifth
-const GRAPIncentivizer = artifacts.require("GRAPIncentivizer");
+const RUPEEIncentivizer = artifacts.require("RUPEEIncentivizer");
 
 // ============ Main Migration ============
 
@@ -39,16 +39,16 @@ module.exports = migration;
 
 async function deployDistribution(deployer, network, accounts) {
   console.log(network)
-  let grap = await GRAPProxy.deployed();
-  let yReserves = await GRAPReserves.deployed()
-  let yRebaser = await GRAPRebaser.deployed()
+  let RUPEE = await RUPEEProxy.deployed();
+  let yReserves = await RUPEEReserves.deployed()
+  let yRebaser = await RUPEERebaser.deployed()
   let tl = await Timelock.deployed();
   let gov = await Gov.deployed();
   if (network != "test") {
-    await deployer.deploy(GRAPIncentivizer);
-    await deployer.deploy(GRAP_LINKPool);
+    await deployer.deploy(RUPEEIncentivizer);
+    await deployer.deploy(RUPEE_LINKPool);
     
-    let link_pool = new web3.eth.Contract(GRAP_LINKPool.abi, GRAP_LINKPool.address);
+    let link_pool = new web3.eth.Contract(RUPEE_LINKPool.abi, RUPEE_LINKPool.address);
 
     console.log("setting distributor");
     await Promise.all([
@@ -61,8 +61,8 @@ async function deployDistribution(deployer, network, accounts) {
     console.log("transfering and notifying");
     console.log("eth");
     await Promise.all([
-      grap.transfer(GRAP_LINKPool.address, twenty.toString()),
-      grap._setIncentivizer(GRAPIncentivizer.address),
+      RUPEE.transfer(RUPEE_LINKPool.address, twenty.toString()),
+      RUPEE._setIncentivizer(RUPEEIncentivizer.address),
     ]);
 
     await Promise.all([
@@ -80,14 +80,14 @@ async function deployDistribution(deployer, network, accounts) {
   }
 
   await Promise.all([
-    grap._setPendingGov(Timelock.address),
+    RUPEE._setPendingGov(Timelock.address),
     yReserves._setPendingGov(Timelock.address),
     yRebaser._setPendingGov(Timelock.address),
   ]);
 
   await Promise.all([
       tl.executeTransaction(
-        GRAPProxy.address,
+        RUPEEProxy.address,
         0,
         "_acceptGov()",
         "0x",
@@ -95,7 +95,7 @@ async function deployDistribution(deployer, network, accounts) {
       ),
 
       tl.executeTransaction(
-        GRAPReserves.address,
+        RUPEEReserves.address,
         0,
         "_acceptGov()",
         "0x",
@@ -103,7 +103,7 @@ async function deployDistribution(deployer, network, accounts) {
       ),
 
       tl.executeTransaction(
-        GRAPRebaser.address,
+        RUPEERebaser.address,
         0,
         "_acceptGov()",
         "0x",

@@ -1,1 +1,0 @@
-export const grap = '0x06d8ee2B533889f4d40714B95424fB66323c0eAc'

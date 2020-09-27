@@ -2,13 +2,13 @@
 
 // Token
 // deployed first
-const GRAPImplementation = artifacts.require("GRAPDelegate");
-const GRAPProxy = artifacts.require("GRAPDelegator");
+const RUPEEImplementation = artifacts.require("RUPEEDelegate");
+const RUPEEProxy = artifacts.require("RUPEEDelegator");
 
 // Rs
 // deployed second
-const GRAPReserves = artifacts.require("GRAPReserves");
-const GRAPRebaser = artifacts.require("GRAPRebaser");
+const RUPEEReserves = artifacts.require("RUPEEReserves");
+const RUPEERebaser = artifacts.require("RUPEERebaser");
 
 // ============ Main Migration ============
 
@@ -26,20 +26,20 @@ module.exports = migration;
 async function deployRs(deployer, network) {
   let reserveToken = "0x5d6D4355776fffD46D83DCeDB8156D65c152a4ba";
   let uniswap_factory = "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f";
-  await deployer.deploy(GRAPReserves, reserveToken, GRAPProxy.address);
-  await deployer.deploy(GRAPRebaser,
-      GRAPProxy.address,
+  await deployer.deploy(RUPEEReserves, reserveToken, RUPEEProxy.address);
+  await deployer.deploy(RUPEERebaser,
+      RUPEEProxy.address,
       reserveToken,
       uniswap_factory,
-      GRAPReserves.address
+      RUPEEReserves.address
   );
-  let rebase = new web3.eth.Contract(GRAPRebaser.abi, GRAPRebaser.address);
+  let rebase = new web3.eth.Contract(RUPEERebaser.abi, RUPEERebaser.address);
 
   let pair = await rebase.methods.uniswap_pair().call();
-  console.log("GRAPProxy address is " + GRAPProxy.address);
+  console.log("RUPEEProxy address is " + RUPEEProxy.address);
   console.log("Uniswap pair is " + pair);
-  let grap = await GRAPProxy.deployed();
-  await grap._setRebaser(GRAPRebaser.address);
-  let reserves = await GRAPReserves.deployed();
-  await reserves._setRebaser(GRAPRebaser.address)
+  let RUPEE = await RUPEEProxy.deployed();
+  await RUPEE._setRebaser(RUPEERebaser.address);
+  let reserves = await RUPEEReserves.deployed();
+  await reserves._setRebaser(RUPEERebaser.address)
 }
